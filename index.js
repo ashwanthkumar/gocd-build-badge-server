@@ -40,6 +40,9 @@ app.get('/badge/:pipeline', function(request, response) {
       pipelineStatus = JSON.parse(result);
       r = STATUS_CONV[pipelineStatus.status.toLowerCase()] || r;
     }
+    response.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+    response.header('Pragma', 'no-cache');
+    response.header('Expires', '0');
     response.header('Content-Type', 'image/svg+xml');
     response.render('pages/badge.svg.ejs', {
         boundary: r.color || "grey",
