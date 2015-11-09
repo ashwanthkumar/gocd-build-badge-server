@@ -18,6 +18,7 @@ var STATUS_CONV = {
 
 app.use(bodyParser.json()); // for parsing application/json
 app.set('port', (process.env.PORT || 5000));
+app.set('etag', false); // Don't set ETags - to bypass Github Image caching
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
