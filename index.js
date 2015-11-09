@@ -48,6 +48,17 @@ app.get('/badge/:pipeline', function(request, response) {
   });
 });
 
+app.get('/debug/:pipeline', function(request, response) {
+  redis.get(request.params.pipeline, function (err, result) {
+    if(err) {
+      console.error(err);
+      response.send(500);
+    } else {
+      response.json(result);
+    }
+  });  
+})
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
