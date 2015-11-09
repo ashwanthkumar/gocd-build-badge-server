@@ -2,7 +2,8 @@
   "name": "Build Badge server for private GoCD instances",
   "description": "NodeJS app to store your pipeline passed / failed status so that we could generate a build badge for your Private Github repos.",
   "repository": "https://github.com/ashwanthkumar/gocd-build-badge-server",
-  "logo": "https://github.com/ashwanthkumar/gocd-build-badge-server",
-  "keywords": ["node", "express", "static"],
-  "image": "heroku/nodejs"
+  "logo": "https://raw.githubusercontent.com/ashwanthkumar/assets/master/images/gocd-logo.png",
+  "keywords": ["go.cd", "gocd", "node", "build-badge"],
+  "image": "heroku/nodejs",
+  "addons": ["heroku-redis:hobby-dev"]
 }
