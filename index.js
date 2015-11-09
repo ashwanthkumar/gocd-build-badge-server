@@ -32,15 +32,13 @@ app.post('/status', function(request, response) {
 
 app.get('/badge/:pipeline', function(request, response) {
   redis.get(request.params.pipeline, function (err, result) {
-    var r;
-    if(err || !result) {
-      r = {
-        "color": "grey",
-        "text": "Unknown"
-      }
-    } else {
+    var r = {
+      "color": "grey",
+      "text": "Unknown"
+    };
+    if(result && !err) {
       pipelineStatus = JSON.parse(result);
-      r = STATUS_CONV[pipelineStatus.status.toLowerCase()];
+      r = STATUS_CONV[pipelineStatus.status.toLowerCase()] || r;
     }
     response.header('Content-Type', 'image/svg+xml');
     response.render('pages/badge.svg.ejs', {
