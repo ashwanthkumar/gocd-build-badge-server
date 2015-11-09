@@ -24,7 +24,10 @@ app.set('view engine', 'ejs');
 
 app.post('/status', function(request, response) {
   redis.set(request.body.pipeline, JSON.stringify(request.body));
-  response.send("OK");
+  response.send({
+    "response": "ok",
+    "input": JSON.stringify(request.body)
+  });
 });
 
 app.get('/badge/:pipeline', function(request, response) {
