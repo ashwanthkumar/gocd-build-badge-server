@@ -46,7 +46,6 @@ app.get('/badge/:pipeline', function(request, response) {
     response.header('Cache-Control', 'no-cache');
     response.header('Pragma', 'no-cache');
     response.header('Expires', 'Sat, 1 Jan 1970 00:00:00 GMT');
-    response.header('Last-Modified', 'Sat, 1 Jan 1970 00:00:00 GMT');
     response.header('Etag', Math.random());
     response.type('svg');
     response.render('pages/badge.svg.ejs', {
