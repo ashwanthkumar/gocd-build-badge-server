@@ -41,9 +41,13 @@ app.get('/badge/:pipeline', function(request, response) {
       pipelineStatus = JSON.parse(result);
       r = STATUS_CONV[pipelineStatus.status.toLowerCase()] || r;
     }
+    // Headers to disable cache by Github's camo service
+    // Refer - https://github.com/github/markup/issues/224#issuecomment-37663375
     response.header('Cache-Control', 'no-cache');
     response.header('Pragma', 'no-cache');
-    response.header('Expires', '0');
+    response.header('Expires', 'Sat, 1 Jan 1970 00:00:00 GMT');
+    response.header('Last-Modified', 'Sat, 1 Jan 1970 00:00:00 GMT');
+    response.header('Etag', Math.random());
     response.type('svg');
     response.render('pages/badge.svg.ejs', {
         boundary: r.color || "grey",
