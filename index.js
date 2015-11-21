@@ -7,12 +7,16 @@ var redis = new Redis(process.env.REDIS_URL || 6379);
 
 var STATUS_CONV = {
   "passed": {
-    "color": "green",
-    "text": "Passed"
+    "color": "#4c1",
+    "text": "passed"
   },
   "failed": {
-    "color": "red",
-    "text": "Failed"
+    "color": "#e05d44",
+    "text": "failed"
+  },
+  "unknown": {
+    "color": "#9f9f9f",
+    "text": "unknown"
   }
 }
 
@@ -33,10 +37,7 @@ app.post('/status', function(request, response) {
 
 app.get('/badge/:pipeline', function(request, response) {
   redis.get(request.params.pipeline, function (err, result) {
-    var r = {
-      "color": "grey",
-      "text": "Unknown"
-    };
+    var r = STATUS_CONV['unknown'];
     if(result && !err) {
       pipelineStatus = JSON.parse(result);
       r = STATUS_CONV[pipelineStatus.status.toLowerCase()] || r;
@@ -49,8 +50,8 @@ app.get('/badge/:pipeline', function(request, response) {
     response.header('Etag', Math.random());
     response.type('svg');
     response.render('pages/badge.svg.ejs', {
-        boundary: r.color || "grey",
-        text: r.text || "Unknown",
+        color: r.color || "lightgrey",
+        text: r.text || "unknown",
         size: request.query.size || 20
       });
   });
@@ -64,7 +65,7 @@ app.get('/debug/:pipeline', function(request, response) {
     } else {
       response.json(result);
     }
-  });  
+  });
 })
 
 app.listen(app.get('port'), function() {
