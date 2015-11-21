@@ -5,9 +5,9 @@ Simple NodeJS app to store your pipeline passed / failed status so that we could
 ## Build Badges
 Depending on the last known status of the pipeline you could get any of the following badges
 
-<img src="https://raw.githubusercontent.com/ashwanthkumar/gocd-build-badge-server/master/doc/passed.svg" width="175">
-<img src="https://raw.githubusercontent.com/ashwanthkumar/gocd-build-badge-server/master/doc/unknown.svg" width="150">
-<img src="https://raw.githubusercontent.com/ashwanthkumar/gocd-build-badge-server/master/doc/failed.svg" width="100">
+![Passed](https://raw.githubusercontent.com/ashwanthkumar/gocd-build-badge-server/master/doc/passed.png)
+![Unknown](https://raw.githubusercontent.com/ashwanthkumar/gocd-build-badge-server/master/doc/unknown.png)
+![Failed](https://raw.githubusercontent.com/ashwanthkumar/gocd-build-badge-server/master/doc/failed.png)
 
 ## Dependencies
 - NodeJS
